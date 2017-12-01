@@ -8,7 +8,7 @@ a {
   color: #0096cf;
 }
 
-.time {
+.time, .footer {
   color: hsla(0,0%,100%,.2);
   font-size: 10pt;
 }
@@ -30,15 +30,24 @@ a {
   border-radius: 5px;
   color: white;
   text-decoration: none;
+	vertical-align:middle;
+	display: inline;
 }
 
-img {
+img.logo {
+  height: 31px;
+	margin: 4px 2px;
+	vertical-align:middle;
+	display: inline;
+}
+
+img.emote {
   height: 19px;
   position: relative;
   top: 4px;
 }
 
-img .emoji {
+img.emoji {
   margin: 0px !important;
   display: inline !important;
 }
