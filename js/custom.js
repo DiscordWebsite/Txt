@@ -8,6 +8,14 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+var rules = SimpleMarkdown.defaultRules; // for example
+var parser = SimpleMarkdown.parserFor(rules);
+var htmlOutput = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'html'));
+
+var markdown = function(source) {
+    return htmlOutput(parser(source + "\n\n", {inline: false}));
+};
+
 $(document).ready(function() {
 	var loc = getParameterByName('txt')
 	var url = "https://cdn.discordapp.com/attachments/"+loc+".txt";
@@ -15,10 +23,20 @@ $(document).ready(function() {
 		$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
 			// filter html
 			var text = data.contents.split('<').join('&lt').split('>').join('&gt').split('\n').join('<br>');
-			// reformat for logs
-			text = text.replace(/\[(.*)\] (\S.{0,62}\S) : (.*)/g,'<span class="name">$2</span> <span class="time">$1</span><br>$3');
+			// reformat for logs (<md> tokens for markdown later)
+			text = text.replace(/\[(.*)\] (\S.{0,62}\S) : (.*)/g,'<md/><span class="name">$2</span> <span class="time">$1</span><br><md>$3');
 			// custom emotes
 			text = text.replace(/&lt(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt/g,'<img src="https://cdn.discordapp.com/emojis/$2.png" alt="$1">');
+			// markdown
+			text = text.split('<md').map(s => {
+				if(s.startsWith('/>'))
+					return s.substring(2);
+			  else if(s.startsWith('>'))
+					return markdown(s.substring(1));
+				else
+					return markdown(s);
+			}).join('');
+			// update
 			$('#output').html('<a class="button" href="'+url+'">View Original</a><br><br>'+text);
 			twemoji.size = '16x16';
 			twemoji.parse(document.body);
