@@ -1,3 +1,4 @@
+// Query string parsing
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -8,6 +9,7 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+//Markdown
 var rules = SimpleMarkdown.defaultRules; // for example
 var parser = SimpleMarkdown.parserFor(rules);
 var htmlOutput = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'html'));
@@ -16,6 +18,7 @@ var markdown = function(source) {
     return htmlOutput(parser(source + "\n\n", {inline: false}));
 };
 
+// Loading doc and parsing
 $(document).ready(function() {
 	var loc = getParameterByName('txt')
 	var url = "https://cdn.discordapp.com/attachments/"+loc+".txt";
