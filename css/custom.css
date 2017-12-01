@@ -27,3 +27,14 @@ html, body {
   color: white;
   text-decoration: none;
 }
+
+img {
+  height: 19px;
+  position: relative;
+  top: 4px;
+}
+
+img .emoji {  
+  margin: 0px !important;
+  display: inline !important;
+}
