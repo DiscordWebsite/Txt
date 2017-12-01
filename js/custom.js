@@ -10,10 +10,11 @@ function getParameterByName(name, url) {
 
 $(document).ready(function() {
 	var loc = getParameterByName('txt')
+	var url = "https://cdn.discordapp.com/attachments/"+loc+".txt";
 	if(loc)
-		$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent("https://cdn.discordapp.com/attachments/"+loc+".txt") + '&callback=?', function(data){
+		$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
 			var formatted = data.contents.split('<').join('&lt').split('>').join('&gt').split('\n').join('<br>');
-			$('#output').html(formatted);
+			$('#output').html('<a href="'+url+'">View Original</a><br><br>'+formatted);
 		});
 	else
 		$('#output').html('Invalid text file');
