@@ -40,7 +40,7 @@ $(document).ready(function() {
 					return markdown(s);
 			}).join('');
 			// update
-			$('#output').html('<a class="button" href="'+url+'">View Original</a><br><br>'+text);
+			$('#output').html('<a class="button" href="'+url+'">Open Original</a><br><br>'+text);
 			twemoji.size = '16x16';
 			twemoji.parse(document.body);
 		});
