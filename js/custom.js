@@ -28,8 +28,6 @@ $(document).ready(function() {
 			var text = data.contents.split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
 			// reformat for logs (<md> tokens for markdown later)
 			text = text.replace(/\[(.*)\] (\S.{0,62}\S) : (.*)/g,'<md/><span class="name">$2</span> <span class="time">$1</span><br><md>$3');
-			// custom emotes
-			text = text.replace(/&lt;(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt;/g,'<img src="https://cdn.discordapp.com/emojis/$2.png" class="emote" alt="$1">');
 			// markdown
 			text = text.split('<md').map(s => {
 				if(s.startsWith('/>'))
@@ -39,6 +37,8 @@ $(document).ready(function() {
 				else
 					return markdown(s);
 			}).join('');
+      // custom emotes
+			text = text.replace(/&lt;(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt;/g,'<img src="https://cdn.discordapp.com/emojis/$2.png" class="emote" alt="$1">');
 			// update
 			$('#output').html('<a class="button" href="'+url+'">Open Original</a><br><br>'+text);
 			twemoji.size = '16x16';
