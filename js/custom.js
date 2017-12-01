@@ -13,8 +13,9 @@ $(document).ready(function() {
 	var url = "https://cdn.discordapp.com/attachments/"+loc+".txt";
 	if(loc)
 		$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
-			var formatted = data.contents.split('<').join('&lt').split('>').join('&gt').split('\n').join('<br>');
-			$('#output').html('<a href="'+url+'">View Original</a><br><br>'+formatted);
+			var text = data.contents.split('<').join('&lt').split('>').join('&gt').split('\n').join('<br>');
+			text = text.replace(/\[(.*)\] (\S.{0,30}\S) : (.*)/g,'<span class="name">$2</span> <span class="time">$1</span><br>$3');
+			$('#output').html('<a class="button" href="'+url+'">View Original</a><br><br>'+text);
 		});
 	else
 		$('#output').html('Invalid text file');
