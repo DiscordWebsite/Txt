@@ -40,7 +40,7 @@ $(document).ready(function() {
       // custom emotes
 			text = text.replace(/&lt;(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt;/g,'<img src="https://cdn.discordapp.com/emojis/$2.png" class="emote" alt="$1">');
 			// update
-			$('#output').html('<a class="button" href="'+url+'">Open Original</a><br><br>'+text);
+			$('#output').html('<a class="button" href="'+url+'">Download Original</a><br><br>'+text);
 			twemoji.size = '16x16';
 			twemoji.parse(document.body);
 		});
