@@ -1,7 +1,8 @@
 html, body {
-	background-color: #36393E;
+  background-color: #36393E;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
 }
 
 a {
@@ -30,15 +31,15 @@ a {
   border-radius: 5px;
   color: white;
   text-decoration: none;
-	vertical-align:middle;
-	display: inline;
+  vertical-align:middle;
+  display: inline;
 }
 
 img.logo {
   height: 31px;
-	margin: 4px 2px;
-	vertical-align:middle;
-	display: inline;
+  margin: 4px 2px;
+  vertical-align:middle;
+  display: inline;
 }
 
 img.emote {
