@@ -27,7 +27,9 @@ $(document).ready(function() {
 			// filter html
 			var text = data.contents.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
 			// reformat for logs (<md> tokens for markdown later)
-			text = text.replace(/\[(.*)\] (\S.{0,70}\S) : (.*)/g,'<md/><span class="name">$2</span> <span class="time">$1</span><br><md>$3');
+			// text = text.replace(/\[(.*)\] (\S.{0,70}\S) : (.*)/g,'<md/><span class="name">$2</span> <span class="time">$1</span><br><md>$3');
+            // changed this line to add support for user IDs
+            text = text.replace(/\[(.*)\] (\S.{0,70}?\S) (\(\d{17,20}\) )?: (.*)/g,'<md/><span class="name">$2</span> <span class="time">$3$1</span><br><md>$4');
 			// markdown
 			text = text.split('<md').map(s => {
 				if(s.startsWith('/>'))
