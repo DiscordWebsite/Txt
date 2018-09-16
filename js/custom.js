@@ -40,7 +40,8 @@ $(document).ready(function() {
 					return markdown(s);
 			}).join('');
 			// custom emotes
-			text = text.replace(/&lt;(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt;/g,'<img src="https://cdn.discordapp.com/emojis/$2.png" class="emote" alt="$1">');
+			text = text.replace(/&lt;(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt;/g,'<img src="https://cdn.discordapp.com/emojis/$2.png?v=1" class="emote" alt="$1">');
+			text = text.replace(/&lt;a(:[A-Za-z0-9-_]{2,64}:)(\d{17,20})&gt;/g,'<img src="https://cdn.discordapp.com/emojis/$2.gif?v=1" class="emote" alt="$1">');
 			// update
 			$('#output').html('<a class="button" href="'+url+'">Download Original</a><br><br>'+(text.replace(/  /g,' &nbsp;')));
 			twemoji.size = '16x16';
