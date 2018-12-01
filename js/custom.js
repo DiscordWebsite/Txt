@@ -24,7 +24,7 @@ $(document).ready(function() {
     var raw = getParameterByName('raw')
 	var url = "https://cdn.discordapp.com/attachments/"+loc+".txt";
 	if(loc)
-		$.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
+		$.getJSON('https://allorigins.ml/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
 			// filter html
 			var text = data.contents.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
             if(!raw)
