@@ -1,9 +1,26 @@
 # txt.discord.website
-This site is used to view `.txt` files that have been uploaded to Discord.
+This site is used to view text files that have been uploaded to Discord.
 The site is static; the data loading and formatting is performed clientside.
 Deleting the original file from Discord will also prevent loading it with this site.
 
 ## Example
+Link to a text file uploaded to Discord:
+> https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt
+
+Take the relevant substring (channel id, attachment id, and attachment name):
+> 147698382092238848/506154212124786689/example.txt
+
+Add as a query parameter:
+> https://txt.discord.website?file=147698382092238848/506154212124786689/example.txt
+
+For raw (non-formatted) output, append `&raw=true`:
+> https://txt.discord.website?file=147698382092238848/506154212124786689/example&raw=true
+
+<details>
+<summary>Deprecated use of .txt attachments</summary>
+`file=` is prioritized over the `txt=` parameter, i.e. when both are present, `file=` parameter
+will take effect.
+
 Link to a txt file uploaded to Discord:
 > https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt
 
@@ -15,6 +32,7 @@ Add as a query parameter:
 
 For raw (non-formatted) output, append `&raw=true`:
 > https://txt.discord.website?txt=147698382092238848/506154212124786689/example&raw=true
+</details>
 
 ## Logging format
 Additional formatting will occur for lines formatted in the following way:

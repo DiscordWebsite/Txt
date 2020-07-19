@@ -55,25 +55,40 @@ function parseAndShowDocument(data, url, raw) {
     }
 }
 
+function loadFileAt(loc) {
+    var raw = getParameterByName('raw');
+    var url = `https://cdn.discordapp.com/attachments/${loc}`;
+    $.ajax({
+        url: cors_url + url ,
+        headers: {'x-requested-with': 'Discord Text Webview'},
+        method: 'GET',
+        success: function(response) {
+            if(typeof response === typeof 'string') {
+                parseAndShowDocument(response, url, raw)
+            } else {
+                $('#output').html(`Given file attachment at ${url} is not a text file.`);
+            }
+        },
+        error: function( jqXHR, textStatus, errorThrown) {
+            $('#output').html('Failed to load <b>' + url + '</b> : ' + errorThrown);
+        }
+    });
+}
+
 // Loading doc and parsing
 $(document).ready(function() {
-    var loc = getParameterByName('txt')
-    var raw = getParameterByName('raw')
-    var url = "https://cdn.discordapp.com/attachments/"+loc+".txt";
+    var loc = getParameterByName('file');
     if(loc) {
-        $.ajax({
-            url: cors_url + url ,
-            headers: {'x-requested-with': 'Discord Text Webview'},
-            method: 'GET',
-            success: function(data) { parseAndShowDocument(data, url, raw) },
-            error: function( jqXHR, textStatus, errorThrown) {
-                $('#output').html('Failed to load <b>' + url + '</b> : ' + errorThrown);
-            }
-        });
+        loadFileAt(loc);
     } else {
-        $('#output').html('No text file provided.<br><br>'
-            +'This site is used to view .txt files that have been uploaded to Discord.<br><br>'
-            +'For example, the file uploaded here: https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt<br><br>'
-            +'Can be viewed here: https://txt.discord.website/?txt=147698382092238848/506154212124786689/example');
+        var txt = getParameterByName("txt");
+        if(txt) {
+            loadFileAt(txt + ".txt");
+        } else {
+            $('#output').html('No text file provided.<br><br>'
+                +'This site is used to view text files that have been uploaded to Discord.<br><br>'
+                +'For example, the file uploaded here: https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt<br><br>'
+                +'Can be viewed here: https://txt.discord.website/?file=147698382092238848/506154212124786689/example.txt');
+        }
     }
 });
