@@ -73,7 +73,7 @@ $(document).ready(function() {
     } else {
         $('#output').html('No text file provided.<br><br>'
             +'This site is used to view .txt files that have been uploaded to Discord.<br><br>'
-            +'For example, the file uploaded here: https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt<br><br>'
-            +'Can be viewed here: https://txt.discord.website/?txt=147698382092238848/506154212124786689/example');
+            +'For example, the file uploaded here: <a href="https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt">https://cdn.discordapp.com/attachments/147698382092238848/506154212124786689/example.txt</a><br><br>'
+            +'Can be viewed here: <a href="https://txt.discord.website/?txt=147698382092238848/506154212124786689/example">https://txt.discord.website/?txt=147698382092238848/506154212124786689/example</a>');
     }
 });
