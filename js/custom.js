@@ -23,7 +23,7 @@ var markdown = function(source) {
 // Document Parsing
 function parseAndShowDocument(data, url, raw) {
     // filter html
-    var text = data.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
+    var text = data.contents.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
     if(!raw)
     {
         // reformat for logs (<md> tokens for markdown later)
