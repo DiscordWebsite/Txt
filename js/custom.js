@@ -1,4 +1,4 @@
-const cors_url = 'https://cors-anywhere.herokuapp.com/'
+const cors_url = 'https://api.allorigins.win/get?url='
 
 // Query string parsing
 function getParameterByName(name, url) {
